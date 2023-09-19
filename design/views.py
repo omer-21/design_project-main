@@ -32,8 +32,10 @@ def upload_design_view(request):
         base_dir=settings.BASE_DIR
         #print(base_dir)
         img_url=rf"{base_dir}\uploads\images\designs\{design_img.name}"
+        #design.design_img.url=img_url
         print(img_url)
         img=Image.open(img_url)
+        d_width, d_height = img.size
         img=np.array(img,dtype=np.uint8)
         design.content_list=json.dumps(img.tolist())
         # Process the image to extract the used colors
@@ -42,8 +44,6 @@ def upload_design_view(request):
         design.used_colors = colors
 
         # Calculate the height and width of the image
-        image = Image.open(design_img)
-        d_width, d_height = image.size
         design.d_width = d_width
         design.d_height = d_height
         design.warp_seq=''
@@ -92,6 +92,7 @@ def dn(request,design_id):
             color_hex = "#{:02x}{:02x}{:02x}".format(r, g, b)
             color_palette_html += f'<div style="display: inline-block; width: 20px; height: 20px; background-color: {color_hex}; color: white; text-align: center;">{ key }</div>'
         context={'des_img':design.design_img,'color_palette_html':color_palette_html}
+        print(design.design_img.url)
         return render(request,'design/design.html',context)
 
 
