@@ -59,7 +59,7 @@ def upload_design_view(request):
             <script>
                 alert('Design uploaded successfully');
                 setTimeout(function() {{
-                    window.location.href = "{reverse('dn')}";
+                    window.location.href = "{reverse('dn', args=[design.id] )}";
                 }}, 0); // Redirect after 2 seconds (adjust the delay as needed)
             </script>
         ''')
@@ -73,7 +73,7 @@ def design_list(request):
     designs = Design.objects.all()
     return render(request, 'design/design_list.html', {'designs': designs})
 
-def dn(request):
+def dn(request,design_id):
     if request.method=='POST':
         #setAttribute2database
         print(request.POST)
@@ -81,11 +81,22 @@ def dn(request):
         return HttpResponse('{"POST":"POST"}')   
     else:
         print("getdn")
-        return render(request,'design/design.html')
+        design=Design.objects.get(pk=design_id)
+        # Generate HTML for color palette
+        colors=design.used_colors
+        color_palette_html = ''
+        for key, color in colors.items():
+            r=color[0] 
+            g=color[1] 
+            b=color[2]
+            color_hex = "#{:02x}{:02x}{:02x}".format(r, g, b)
+            color_palette_html += f'<div style="display: inline-block; width: 20px; height: 20px; background-color: {color_hex}; color: white; text-align: center;">{ key }</div>'
+        context={'des_img':design.design_img,'color_palette_html':color_palette_html}
+        return render(request,'design/design.html',context)
 
 
 
-def WW(request):
+def WW(request,design_id):
     if request.method=='POST':
         #setAttribute2database
         print(request.POST)
@@ -95,7 +106,7 @@ def WW(request):
         print("getWW")
         return render(request,'design/warp-weft-def.html')
 
-def sw(request):
+def sw(request,design_id):
     if request.method=='POST':
         #setAttribute2database
         print(request.POST)
@@ -106,7 +117,7 @@ def sw(request):
         return render(request,'design/sw.html')
 
 
-def cw(request):
+def cw(request,design_id):
     if request.method=='POST':
         #setAttribute2database
         print(request.POST)
@@ -117,7 +128,7 @@ def cw(request):
         return render(request,'design/cw.html')
 
 
-def ld(request):
+def ld(request,design_id):
     if request.method=='POST':
         #setAttribute2database
         print(request.POST)
@@ -128,7 +139,7 @@ def ld(request):
         return render(request,'design/ld.html')
 
 
-def ex(request):
+def ex(request,design_id):
     if request.method=='POST':
         #setAttribute2database
         print(request.POST)

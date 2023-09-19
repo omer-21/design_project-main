@@ -52,7 +52,7 @@
                 {% for design in designs %}
                 <tr>
                     <td>
-                        <a href="{% url 'dn' %}">
+                        <a href="{% url 'dn' design.id %}">
                             <div class="design-card">
                                 <div class="design-image">
                                     <img src="{{ design.design_img.url }}" alt="Design Image">

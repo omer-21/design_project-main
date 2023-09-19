@@ -4,6 +4,14 @@
 {% block content %}
 
 <h1>dn</h1>
+    <!-- Display the uploaded design image -->
+    <img src="{{des_img.url }}" alt="Design Image">
+
+    <!-- Display the color palette -->
+    <div>
+        Color Palette:
+        {{ color_palette_html | safe }}  <!-- Use 'safe' filter to render HTML as is -->
+    </div>
 
 
 {% endblock content %}
