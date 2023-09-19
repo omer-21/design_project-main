@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Main Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .container {
+            text-align: center;
+        }
+        
+        h1 {
+            margin-bottom: 20px;
+        }
+        
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .action-button {
+            background-color: #3498db;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            text-transform: uppercase;
+            transition: background-color 0.2s;
+        }
+        
+        .action-button:hover {
+            background-color: #2980b9;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Welcome to Design Management</h1>
+        <div class="button-container">
+            <a href="upload-design" class="action-button">Create New Design</a>
+            <a href="designs" class="action-button">Edit Existing Design</a>
+        </div>
+    </div>
+</body>
+</html>

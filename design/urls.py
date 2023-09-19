@@ -5,7 +5,7 @@ from .views import *
 
 
 urlpatterns = [
-    path('', index, name='index'),
+
     path('dn/', dn, name='dn'),
     path('ww/', WW, name='WW'),
     path('sw/', sw, name='sw'),
@@ -14,6 +14,9 @@ urlpatterns = [
     path('ex/', ex, name='ex'),
     path('getValue/',getValue, name='getValue'),
     path('setww/',setww, name='setww'),
+    path('upload-design/',upload_design_view, name='upload_design_view'),
+    path('',home_page, name='home_page'),
+    path('',home_page, name='home_page'),
+    path('designs/', design_list, name='design_list'),
 
-    
 ]

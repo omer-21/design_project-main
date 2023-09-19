@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .design-card {
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+    
+        .design-card:hover {
+            background-color: #f0f0f0;
+        }
+    
+        .design-image {
+            flex: 0 0 100px; /* Adjust the image width as needed */
+            margin-right: 10px;
+        }
+    
+        .design-image img {
+            max-width: 100%; /* Make the image small while maintaining its aspect ratio */
+            height: auto;
+        }
+    
+        .design-info {
+            flex: 1;
+        }
+    </style>
+    
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Design List</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Dimensions</th>
+                    <th>Used Colors</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for design in designs %}
+                <tr>
+                    <td>
+                        <a href="{% url 'dn' %}">
+                            <div class="design-card">
+                                <div class="design-image">
+                                    <img src="{{ design.design_img.url }}" alt="Design Image">
+                                </div>
+                                <div class="design-info">
+                                    <p>Dimensions: {{ design.d_width }} x {{ design.d_height }}</p>
+                                    <p>Used Colors: {{ design.used_colors }}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>            
+        </table>
+    </div>
+</body>
+</html>

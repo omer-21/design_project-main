@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Design</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        form {
+            text-align: center;
+        }
+        
+        input[type="file"] {
+            display: none;
+        }
+        
+        label {
+            display: block;
+            border: 2px solid #3498db;
+            color: #3498db;
+            background-color: #ffffff;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        
+        label:hover {
+            background-color: #3498db;
+            color: #ffffff;
+        }
+        
+        button {
+            background-color: #3498db;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Upload Design</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="design_img">Choose Design Image</label>
+            <input type="file" name="design_img" accept="image/*" id="design_img" onchange="updateFileName()">
+            <br>
+            <button type="submit">Upload</button>
+        </form>
+        <div id="selected_file_name" class="file-name"></div>
+    </div>
+    
+    <script>
+        function updateFileName() {
+            const fileInput = document.getElementById('design_img');
+            const selectedFileName = document.getElementById('selected_file_name');
+            
+            if (fileInput.files.length > 0) {
+                selectedFileName.textContent = 'Selected file: ' + fileInput.files[0].name;
+            } else {
+                selectedFileName.textContent = '';
+            }
+        }
+    </script>
+</body>
+</html>
